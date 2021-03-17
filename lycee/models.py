@@ -71,4 +71,4 @@ class Student(models.Model):
     null = True
   )
   def __str__(self):
-    return '{} | {} | {}'.format(self.first_name,self.last_name,self.email)
+    return '{} {} | {}'.format(self.first_name,self.last_name,self.email)
