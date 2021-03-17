@@ -20,7 +20,7 @@ class Cursus(models.Model):
     default= '0000-0001'
   )
   def __str__(self):
-    return '{} {}'.format(self.name,self.scholar_year)
+    return '{} | {}'.format(self.name,self.scholar_year)
 
 # Create your models here.
 class Student(models.Model):
@@ -70,3 +70,5 @@ class Student(models.Model):
     on_delete = models.CASCADE,
     null = True
   )
+  def __str__(self):
+    return '{} | {} | {}'.format(self.first_name,self.last_name,self.email)
