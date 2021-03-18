@@ -20,5 +20,6 @@ from lycee import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('lycee/', views.index,name = "index"),
-    path('lycee/<int:cursus_id>', views.detail,name="detail")
+    path('lycee/<int:cursus_id>', views.detail,name="detail"),
+    path('lycee/student/<int:student_id>',views.detail_student,name='detail_student')
 ]
