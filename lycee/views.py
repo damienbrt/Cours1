@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Cursus,Student
 from django.template import loader
+from django.views.generic.edit import CreateView
+from .forms import StudentForm
+from django.urls import reverse
 
 # Create your views here.
 """
@@ -30,3 +33,14 @@ def detail_student(request,student_id):
     'liste' : result_list,
   }
   return render(request,'lycee/student/detail_student.html',context)
+
+class StudentCreateView(CreateView):
+  #modele
+  model = Student
+  #formulaire
+  form_class = StudentForm
+  #template
+  template_name = 'lycee/student/create.html'
+
+  def get_success_url(self):
+    return reverse('detail_student',args=(self.object.pk,))
