@@ -72,3 +72,28 @@ class Student(models.Model):
   )
   def __str__(self):
     return '{} {} | {}'.format(self.first_name,self.last_name,self.email)
+
+class Presence(models.Model):
+  reason = models.CharField(
+    max_length = 50,
+    blank = False,
+    null = True,
+    default = 'aucun'
+  )
+  isMissing = models.BooleanField(
+    verbose_name = 'Is Missing',
+    blank = False,
+    default = 0   
+  )
+  date = models.DateField(
+    verbose_name= 'date',
+    blank = False,
+    null = False
+  )
+  student = models.ForeignKey(
+    Student,
+    on_delete = models.CASCADE,
+    null = True
+  )
+  def __str__(self):
+    return '{} {} | {} | {}'.format(self.student.first_name,self.student.last_name ,self.isMissing,self.date)

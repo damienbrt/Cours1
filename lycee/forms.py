@@ -1,5 +1,5 @@
 from django.forms.models import ModelForm
-from .models import Student
+from .models import Student,Presence
 
 class StudentForm(ModelForm):
 
@@ -16,4 +16,18 @@ class StudentForm(ModelForm):
       'phone',
       'cursus',
       'comments',
+    )
+
+class PresenceForm(ModelForm):
+
+  class Meta:
+     
+    #modele
+    model = Presence
+    #les champs qu'on va traiter
+    fields =(
+      'reason',
+      'isMissing',
+      'date',
+      'student',
     )

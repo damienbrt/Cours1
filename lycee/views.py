@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Cursus,Student
+from .models import Cursus,Student,Presence
 from django.template import loader
 from django.views.generic.edit import CreateView,UpdateView
-from .forms import StudentForm
+from .forms import StudentForm,PresenceForm
 from django.urls import reverse
 
 # Create your views here.
@@ -24,6 +24,14 @@ def detail(request, cursus_id):
   }
   return render(request,'lycee/detail_cursus.html',context)
 
+def detailcursuscall(request, cursus_id):
+  result_list = Student.objects.all().filter(cursus=cursus_id)
+
+  context = {
+    'liste' : result_list,
+  }
+  return render(request,'lycee/cursuscall.html',context)
+
 def index(request):
   #result_list = Cursus.objects.all()
   result_list = Cursus.objects.order_by('name')
@@ -42,6 +50,14 @@ def detail_student(request,student_id):
     'liste' : result_list,
   }
   return render(request,'lycee/student/detail_student.html',context)
+
+def detail_presence(request,presence_id):
+  result_list = Presence.objects.get(pk=presence_id)
+
+  context = {
+    'liste' : result_list,
+  }
+  return render(request,'lycee/call/detail_presence.html',context)
 
 class StudentCreateView(CreateView):
   #modele
@@ -65,3 +81,13 @@ class StudentUpdateView(UpdateView):
 
   def get_success_url(self):
     return reverse('detail_student',args=(self.object.pk,))
+
+class PresenceCreateView(CreateView):
+  #modele
+  model = Presence
+  #formulaire
+  form_class = PresenceForm
+  #template
+  template_name = 'lycee/call/create.html'
+  def get_success_url(self):
+    return reverse('detail_presence',args=(self.object.pk,))

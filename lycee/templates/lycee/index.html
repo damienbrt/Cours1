@@ -10,12 +10,16 @@
     <div class="container">
       {% for cursus in liste %}
         <div class="row">
-          <div class = "col-sm-2">
+          <div class = "col-sm-3">
             <a href="{{cursus.id }}">{{cursus.name}}</a>
+            <a class="btn btn-warning" style="float: right" href="cursuscall/{{ cursus.id }}" role="button">Call of roll</a>
           </div>
         </div>
+        
       {% endfor %}
+      <div>
       <a class="btn btn-primary" href="student/create" role="button">Create a student</a>
+      <a class="btn btn-danger" href="call/create" role="button">Particular Call of roll</a>
       <div class="container">
         <div class="container">
           <div class="row">

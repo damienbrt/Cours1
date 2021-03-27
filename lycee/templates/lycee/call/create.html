@@ -1,0 +1,28 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% if liste%}
+  {% block title %}
+    <h3>Create particular Call of roll</h3>
+  {% endblock %}
+
+  {% block content %}
+    <form method="POST">
+      {% csrf_token %}
+      <!-- cross site request forgeries -->
+      <!-- https://docs.djangoproject.com/fr/3.1/ref/csrf/ -->
+      {{ form.as_p }}
+      <div class="boutons">
+        <button class = "alert alert-danger" type='cancel'>
+          <a href={% url 'index' %}></a>
+          Cancel
+        </button>
+        <button class = "alert alert-success" type='submit'>
+          Submit
+        </button>
+      </div>
+    </form>
+  {% endblock %}
+{% else %}
+  <p> No cursus to show .</p>
+{% endif %}
