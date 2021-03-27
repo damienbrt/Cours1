@@ -17,7 +17,7 @@ def detail(request, cursus_id):
 """
 
 def detail(request, cursus_id):
-  result_list = Student.objects.all().filter(cursus=cursus_id)
+  result_list = Student.objects.all().filter(cursus=cursus_id).order_by('last_name')
 
   context = {
     'liste' : result_list,
@@ -25,7 +25,7 @@ def detail(request, cursus_id):
   return render(request,'lycee/detail_cursus.html',context)
 
 def detailcursuscall(request, cursus_id):
-  result_list = Student.objects.all().filter(cursus=cursus_id)
+  result_list = Student.objects.all().filter(cursus=cursus_id).order_by('last_name')
 
   context = {
     'liste' : result_list,
