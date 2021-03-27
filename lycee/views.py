@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Cursus,Student
 from django.template import loader
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView,UpdateView
 from .forms import StudentForm
 from django.urls import reverse
 
@@ -10,10 +10,19 @@ from django.urls import reverse
 """
 def index(request):
   return HttpResponse("Racine de lycee")
-"""
+
 def detail(request, cursus_id):
   resp = "result for cursus {}".format(cursus_id)
   return HttpResponse(resp)
+"""
+
+def detail(request, cursus_id):
+  result_list = Student.objects.all().filter(cursus=cursus_id)
+
+  context = {
+    'liste' : result_list,
+  }
+  return render(request,'lycee/detail_cursus.html',context)
 
 def index(request):
   #result_list = Cursus.objects.all()
@@ -41,6 +50,18 @@ class StudentCreateView(CreateView):
   form_class = StudentForm
   #template
   template_name = 'lycee/student/create.html'
+
+  def get_success_url(self):
+    return reverse('detail_student',args=(self.object.pk,))
+
+class StudentUpdateView(UpdateView):
+  #modele
+  model = Student
+  #formulaire
+  #template
+  template_name = 'lycee/student/edit.html'
+
+  fields = ['first_name','birth_date','last_name','phone','email','comments','cursus']
 
   def get_success_url(self):
     return reverse('detail_student',args=(self.object.pk,))

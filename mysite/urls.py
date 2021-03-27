@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from lycee import views
-from lycee.views import StudentCreateView
+from lycee.views import StudentCreateView, StudentUpdateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +24,5 @@ urlpatterns = [
     path('lycee/<int:cursus_id>', views.detail,name="detail"),
     path('lycee/student/<int:student_id>',views.detail_student,name='detail_student'),
     path('lycee/student/create',StudentCreateView.as_view(),name='create_student'),
+    path('lycee/student/edit/<int:pk>',StudentUpdateView.as_view(),name='edit_student'),
 ]
