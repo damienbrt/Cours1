@@ -30,20 +30,18 @@ def detailcursuscall(request, cursus_id):
     'liste' : result_list,
   }
 
-
   if request.POST.get("submit") == 'submitSend':
     date = request.POST.get("date")
-    student = request.POST.getlist("student")
-    for student in student:
-      if request.POST.get(student.id) == "1":
+    for student in result_list:
+      id = "student"+str(student.id)
+      if request.POST.get(id) == "on":
         c1=Presence()
-        c1.reason="BTS SIO"
+        c1.reason="Aucun"
         c1.isMissing = 1
         c1.date = date
         c1.student= Student.objects.get(id=student.id)
         c1.save()
 
-  
   return render(request,'lycee/cursuscall.html',context)
 
 def index(request):

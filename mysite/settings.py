@@ -121,3 +121,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 ALLOWED_HOSTS = ['*']
 X_FRAME_OPTIONS = '*'
+
+DATE_INPUT_FORMATS = ('%d-%m-%Y','%Y-%m-%d')

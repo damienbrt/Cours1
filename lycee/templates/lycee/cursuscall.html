@@ -15,8 +15,8 @@
       {% for student in liste %}
         <div class="row">
           <div class = "col">
-            <input type="checkbox" id="{{student.id }}" name="{{student.id }}" value=unchecked>
-            <label for="{{student.id }}">{{student.last_name}} {{student.first_name}} </label>
+            <input type="checkbox" name="student{{student.id}}">
+            <label for="student{{student.id}}">{{student.last_name}} {{student.first_name}} </label>
           </div>
         </div>
       {% endfor %}
