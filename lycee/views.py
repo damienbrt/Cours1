@@ -104,6 +104,16 @@ def indexcalllist(request):
   #return HttpResponse(template.render(context,request))
   return render(request,'lycee/call/list/index.html',context)
 
+def detail_cursus_call(request, cursus_id):
+  #result_list = Cursus.objects.all()
+  result_list = Appel.objects.filter(cursus=cursus_id).order_by('date')
+
+  context = {
+    'liste' : result_list,
+  }
+  #return HttpResponse(template.render(context,request))
+  return render(request,'lycee/call/list/index.html',context)
+
 def detail_student(request,student_id):
   result_list = Student.objects.get(pk=student_id)
 
