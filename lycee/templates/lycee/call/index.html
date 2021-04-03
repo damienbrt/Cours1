@@ -8,19 +8,20 @@
 
   {% block content %}
     <div class="container">
+      <div class="row">
+          <div class = "col-sm-3">
+            <a href="list/">ALL</a>
+          </div>
+        </div>
       {% for cursus in liste %}
         <div class="row">
           <div class = "col-sm-3">
-            <a href="{{cursus.id }}">{{cursus.name}}</a>
-            <a class="btn btn-warning" style="float: right" href="cursuscall/{{ cursus.id }}" role="button">Call of roll</a>
+            <a href="list/{{cursus.id }}">{{cursus.name}}</a>
           </div>
         </div>
         
       {% endfor %}
       <div>
-      <a class="btn btn-primary" href="student/create" role="button">Create a student</a>
-      <a class="btn btn-danger" href="call/one/create" role="button">Particular Call of roll</a>
-      <a class="btn btn-info" href="call/list/" role="button">List of Call</a>
       <div class="container">
         <div class="container">
           <div class="row">

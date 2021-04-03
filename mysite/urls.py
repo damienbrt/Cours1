@@ -26,6 +26,10 @@ urlpatterns = [
     path('lycee/student/<int:student_id>',views.detail_student,name='detail_student'),
     path('lycee/student/create',StudentCreateView.as_view(),name='create_student'),
     path('lycee/student/edit/<int:pk>',StudentUpdateView.as_view(),name='edit_student'),
-    path('lycee/call/create',PresenceCreateView.as_view(),name='create_student'),
-    path('lycee/call/<int:presence_id>',views.detail_presence,name='detail_presence'),
+    path('lycee/call/one/create',PresenceCreateView.as_view(),name='create_student'),
+    path('lycee/call/one/<int:presence_id>',views.detail_presence,name='detail_presence'),
+    path('lycee/call/list/', views.indexcalllist,name = "indexcalllist"),
+    path('lycee/call/list/<int:appel_id>', views.detailcall,name="detailcall"),
+    path('lycee/call/list/student/<int:student_id>',views.detail_student_call,name='detail_student_call'),
+    path('lycee/call/', views.indexcall,name = "indexcall"),
 ]

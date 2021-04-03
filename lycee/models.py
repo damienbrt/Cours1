@@ -73,6 +73,31 @@ class Student(models.Model):
   def __str__(self):
     return '{} {} | {}'.format(self.first_name,self.last_name,self.email)
 
+class Appel(models.Model):
+  date = models.DateField(
+    verbose_name= 'date',
+    blank = False,
+    null = False,
+    help_text = 'yyyy-mm-ddd'
+  )
+  time_start = models.TimeField(
+    blank=True, 
+    null=True,
+    help_text = 'HH:MM'
+    )
+  time_end = models.TimeField(
+    blank=True, 
+    null=True,
+    help_text = 'HH:MM'
+    )
+  cursus = models.ForeignKey(
+    Cursus,
+    on_delete = models.CASCADE,
+    null = True
+  )
+  def __str__(self):
+    return '{} | {} - {}'.format(self.date,self.time_start ,self.time_end)
+    
 class Presence(models.Model):
   reason = models.CharField(
     max_length = 50,
@@ -88,10 +113,26 @@ class Presence(models.Model):
   date = models.DateField(
     verbose_name= 'date',
     blank = False,
-    null = False
+    null = False,
+    help_text = 'yyyy-mm-dd',
   )
+  time_start = models.TimeField(
+    blank=True, 
+    null=True,
+    help_text = 'HH:MM'
+    )
+  time_end = models.TimeField(
+    blank=True, 
+    null=True,
+    help_text = 'HH:MM'
+    )
   student = models.ForeignKey(
     Student,
+    on_delete = models.CASCADE,
+    null = True
+  )
+  appel = models.ForeignKey(
+    Appel,
     on_delete = models.CASCADE,
     null = True
   )

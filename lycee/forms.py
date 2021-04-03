@@ -29,5 +29,7 @@ class PresenceForm(ModelForm):
       'reason',
       'isMissing',
       'date',
+      'time_start',
+      'time_end',
       'student',
     )
