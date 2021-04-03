@@ -1,6 +1,10 @@
-{% extends "master.html" %} {% load static %} {% if liste %} {% block title %}
+{% extends "master.html" %} 
+{% load static %} 
+{% if liste %} 
+{% block title %}
 <h3>detail of a student call missing</h3>
-{% endblock %} {% block content %}
+{% endblock %} 
+{% block content %}
 <div class="container">
   {% for presence in liste %}
     <div class="row">
