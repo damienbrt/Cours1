@@ -106,7 +106,7 @@ def indexcalllist(request):
 
 def detail_cursus_call(request, cursus_id):
   #result_list = Cursus.objects.all()
-  result_list = Appel.objects.filter(cursus=cursus_id).order_by('date')
+  result_list = Appel.objects.filter(cursus=cursus_id).order_by('-date')
 
   context = {
     'liste' : result_list,
